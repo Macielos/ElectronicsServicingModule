@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -34,6 +35,7 @@ public class EquipmentService {
 
 	private Map<String, EquipmentCategory> categoriesByName;
 
+	@PostConstruct
 	private void init() {
 		if (categoriesByName == null) {
 			log.info("Fetching categories...");
@@ -61,7 +63,6 @@ public class EquipmentService {
 
 	public EquipmentDto save(EquipmentDto equipmentDto) {
 		log.debug("Save: {}", equipmentDto);
-		init();
 		return toDto(equipmentRepository.save(toEntity(equipmentDto)));
 	}
 
