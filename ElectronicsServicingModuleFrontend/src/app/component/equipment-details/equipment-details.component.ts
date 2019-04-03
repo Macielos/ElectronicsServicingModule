@@ -98,7 +98,9 @@ export class EquipmentDetailsComponent implements OnInit {
       this.newComment.publicationDate = new Date();
       this.selectedEquipment.comments.push(this.newComment);
       const comment = this.newComment;
-      this.commentService.addComment(comment, this.selectedEquipment.id).subscribe(result => comment.id = result.id);
+      if (this.selectedEquipment.id > 0) {
+        this.commentService.addComment(comment, this.selectedEquipment.id).subscribe(result => comment.id = result.id);
+      }
       this.newComment = null;
     }
   }

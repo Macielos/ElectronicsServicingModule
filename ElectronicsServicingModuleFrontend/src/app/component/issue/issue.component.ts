@@ -45,10 +45,10 @@ export class IssueComponent implements OnInit {
       this.selectedEquipment.issues.push(issueToSave);
     }
 
-    this.issueService.startOrUpdateIssue(issueToSave, this.selectedEquipment.id).subscribe(result => {
-      issueToSave.id = result.id;
-      this.tmpIssue = null;
-      this.modalService.dismissAll();
-    });
+    if (this.selectedEquipment.id > 0) {
+      this.issueService.startOrUpdateIssue(issueToSave, this.selectedEquipment.id).subscribe(result => issueToSave.id = result.id);
+    }
+    this.tmpIssue = null;
+    this.modalService.dismissAll();
   }
 }
