@@ -16,8 +16,12 @@ import static esp.config.WebSecurityConfig.BACKEND_URL;
 @RequestMapping("/category")
 public class EquipmentCategoryController {
 
+	private final EquipmentCategoryService equipmentCategoryService;
+
 	@Autowired
-	private EquipmentCategoryService equipmentCategoryService;
+	public EquipmentCategoryController(EquipmentCategoryService equipmentCategoryService) {
+		this.equipmentCategoryService = equipmentCategoryService;
+	}
 
 	@GetMapping
 	public List<String> getAll() {

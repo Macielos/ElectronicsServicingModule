@@ -19,8 +19,12 @@ import static esp.config.WebSecurityConfig.BACKEND_URL;
 @RequestMapping("/comment")
 public class CommentController {
 
+	private final CommentService commentService;
+
 	@Autowired
-	private CommentService commentService;
+	public CommentController(CommentService commentService) {
+		this.commentService = commentService;
+	}
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)

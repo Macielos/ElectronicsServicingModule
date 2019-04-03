@@ -12,10 +12,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class IssueService {
 
+	private final EquipmentRepository equipmentRepository;
+	private final IssueRepository issueRepository;
+
 	@Autowired
-	private EquipmentRepository equipmentRepository;
-	@Autowired
-	private IssueRepository issueRepository;
+	public IssueService(EquipmentRepository equipmentRepository, IssueRepository issueRepository) {
+		this.equipmentRepository = equipmentRepository;
+		this.issueRepository = issueRepository;
+	}
 
 	public IssueDto startOrUpdateIssue(long equipmentId, IssueDto issueDto) {
 		log.debug("Save: {}", issueDto);

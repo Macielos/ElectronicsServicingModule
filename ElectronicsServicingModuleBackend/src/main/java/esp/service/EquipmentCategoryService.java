@@ -13,8 +13,12 @@ import java.util.stream.Collectors;
 @Service
 public class EquipmentCategoryService {
 
+	private final EquipmentCategoryRepository equipmentCategoryRepository;
+
 	@Autowired
-	private EquipmentCategoryRepository equipmentCategoryRepository;
+	public EquipmentCategoryService(EquipmentCategoryRepository equipmentCategoryRepository) {
+		this.equipmentCategoryRepository = equipmentCategoryRepository;
+	}
 
 	public List<String> getAll() {
 		return equipmentCategoryRepository.findAll().stream()

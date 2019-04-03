@@ -17,7 +17,7 @@ export class EquipmentListComponent implements OnInit {
 
   constructor(private equipmentService: EquipmentService) {
     this.columns = ['', 'name', 'category', 'issues', 'comments'];
-    this.pageSize = 100;
+    this.pageSize = 999; // TODO change this to page size, e.g. 10 after implementing paging
     this.pageOffset = 0;
     equipmentService.getEquipmentPage(this.pageOffset, this.pageSize).subscribe(equipments => this.equipments = equipments);
   }

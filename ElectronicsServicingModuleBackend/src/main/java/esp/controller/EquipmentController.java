@@ -21,8 +21,12 @@ import static esp.config.WebSecurityConfig.BACKEND_URL;
 @RequestMapping("/equipment")
 public class EquipmentController {
 
+	private final EquipmentService equipmentService;
+
 	@Autowired
-	private EquipmentService equipmentService;
+	public EquipmentController(EquipmentService equipmentService) {
+		this.equipmentService = equipmentService;
+	}
 
 	@GetMapping(params = {"offset", "size"})
 	public List<EquipmentDto> getPage(Integer offset, Integer size) {

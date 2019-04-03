@@ -28,15 +28,19 @@ import java.util.stream.Collectors;
 @Service
 public class EquipmentService {
 
-	@Autowired
-	private EquipmentRepository equipmentRepository;
-	@Autowired
-	private EquipmentCategoryRepository equipmentCategoryRepository;
+	private final EquipmentRepository equipmentRepository;
+	private final EquipmentCategoryRepository equipmentCategoryRepository;
 
 	private Map<String, EquipmentCategory> categoriesByName;
 
+	@Autowired
+	public EquipmentService(EquipmentRepository equipmentRepository, EquipmentCategoryRepository equipmentCategoryRepository) {
+		this.equipmentRepository = equipmentRepository;
+		this.equipmentCategoryRepository = equipmentCategoryRepository;
+	}
+
 	@PostConstruct
-	private void init() {
+	public void init() {
 		if (categoriesByName == null) {
 			log.info("Fetching categories...");
 			categoriesByName = equipmentCategoryRepository.findAll().stream()

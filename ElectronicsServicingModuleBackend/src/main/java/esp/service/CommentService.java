@@ -12,10 +12,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class CommentService {
 
+	private final EquipmentRepository equipmentRepository;
+	private final CommentRepository commentRepository;
+
 	@Autowired
-	private EquipmentRepository equipmentRepository;
-	@Autowired
-	private CommentRepository commentRepository;
+	public CommentService(EquipmentRepository equipmentRepository, CommentRepository commentRepository) {
+		this.equipmentRepository = equipmentRepository;
+		this.commentRepository = commentRepository;
+	}
 
 	public CommentDto addComment(long equipmentId, CommentDto commentDto) {
 		log.debug("Save: {} {}", equipmentId, commentDto);
