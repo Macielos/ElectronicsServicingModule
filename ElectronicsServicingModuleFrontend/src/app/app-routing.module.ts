@@ -1,8 +1,9 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 // import {AuthGuard} from './security/auth.guard';
-import {EquipmentListComponent} from './equipment/equipment-list/equipment-list.component';
-import {EquipmentDetailsComponent} from './equipment/equipment-details/equipment-details.component';
+import {EquipmentListComponent} from './component/equipment-list/equipment-list.component';
+import {EquipmentDetailsComponent} from './component/equipment-details/equipment-details.component';
+import {IssueComponent} from './component/issue/issue.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/equipment-list', pathMatch: 'full' },

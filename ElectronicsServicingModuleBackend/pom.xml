@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>pl.maciejganko</groupId>
-    <artifactId>ElectornicsServicingModuleBackend</artifactId>
+    <artifactId>ElectronicsServicePointBackend</artifactId>
     <version>1.0-SNAPSHOT</version>
     <build>
         <plugins>

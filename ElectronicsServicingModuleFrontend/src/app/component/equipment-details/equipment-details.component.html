@@ -1,0 +1,94 @@
+<div *ngIf="selectedEquipment" class="container">
+  <h2>Equipment details</h2>
+
+  <div class="form-group">
+    <div class="btn-group">
+      <button class="button-size" (click)="goBack()">Back</button>
+      <button class="button-size" (click)="save()">Save</button>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Name:
+      <input class="form-control" [(ngModel)]="selectedEquipment.name" placeholder="name"/>
+    </label>
+  </div>
+
+  <div class="form-group">
+    <label>Category:
+      <select class="form-control" [(ngModel)]="selectedEquipment.category">
+        <option *ngFor="let category of categories" value={{category}}>
+          {{category}}
+        </option>
+      </select>
+    </label>
+  </div>
+
+  <div class="form-group">
+    <label>Parameters: </label>
+    <table class="table">
+      <tbody>
+      <tr *ngFor="let parameter of selectedEquipment.parameters; let i = index" [attr.data-index]="i">
+        <td><label><input [(ngModel)]="parameter.name" placeholder="name"/></label></td>
+        <td><label><input [(ngModel)]="parameter.value" placeholder="value"/></label></td>
+        <td>
+          <button class="float-right button-size" (click)="deleteParameter(i)">Delete</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="form-group">
+    <button class="button-size" (click)="addParameter()">Add</button>
+  </div>
+
+  <div class="form-group">
+    <label>Issues:</label>
+    <table class="table" *ngIf="selectedEquipment.issues.length">
+      <thead>
+      <tr>
+        <th *ngFor="let col of issueColumns">
+          {{col | uppercase}}
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let issue of selectedEquipment.issues; let i = index" [attr.data-index]="i">
+        <td>
+          <!-- small trick to have the title blue and underlined as link -->
+          <a href="javascript:void(0)" (click)="editIssue(i)">{{issue.title}}</a>
+        </td>
+        <td><label
+          [ngClass]="{'negative-label': isPending(issue), 'positive-label': isResolved(issue)}">{{issue.status}}</label>
+        </td>
+        <td><label>{{formatDate(issue.creationDate)}}</label></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="form-group">
+    <button class="button-size" (click)="startNewIssue()">Start new issue</button>
+  </div>
+
+  <div class="form-group">
+    <label>Comments:</label>
+    <ul class="list-group" *ngIf="selectedEquipment.comments.length">
+      <div *ngFor="let comment of selectedEquipment.comments">
+        <div class="container comment">
+          <div class="small">{{comment.author}} wrote at {{formatDate(comment.publicationDate)}}</div>
+          <p>{{comment.comment}}</p>
+        </div>
+      </div>
+    </ul>
+
+  </div>
+  <div class="form-group">
+    <div *ngIf="newComment">
+      <label><input [(ngModel)]="newComment.comment" placeholder="Write your comment"/></label>
+      <button class="button-size" (click)="sendComment()">Send</button>
+    </div>
+    <button class="button-size" *ngIf="!newComment" (click)="addComment()">Add comment</button>
+  </div>
+
+</div>

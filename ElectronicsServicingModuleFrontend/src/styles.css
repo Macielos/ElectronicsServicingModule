@@ -11,3 +11,7 @@
   padding: 4px 10px;
   border-radius: 8px;
 }
+
+.button-size {
+  min-width: 200px;
+}

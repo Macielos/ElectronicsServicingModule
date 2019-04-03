@@ -1,0 +1,9 @@
+dodawanie eq 			x
+dodawanie issue			x
+save commenta 			x
+obsl bledow, w tym polaczenia	
+walidacja pol przy save		
+cross-origin - check
+fetch categories		X
+testy
+paging
