@@ -1,13 +1,15 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div class="card-header sticky-top bg-light">
+<div class="card-header sticky-top bg-light header-size">
   <a routerLink="/">
   <h2>
     {{ title }}
   </h2>
   </a>
 </div>
-<router-outlet></router-outlet>
 
+<div class="main">
+<router-outlet></router-outlet>
+</div>
 <footer class="card-footer sticky-bottom bg-light footer-size small">
   Made by {{ author }}
 </footer>
