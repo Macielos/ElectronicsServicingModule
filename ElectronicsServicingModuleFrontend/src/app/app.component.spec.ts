@@ -1,5 +1,7 @@
-import { TestBed, async } from '@angular/core/testing';
-import { AppComponent } from './app.component';
+import {TestBed, async} from '@angular/core/testing';
+import {AppComponent} from './app.component';
+import {RouterTestingModule} from '@angular/router/testing';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -7,6 +9,10 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
+      imports: [
+        RouterTestingModule,
+        HttpClientTestingModule
+      ]
     }).compileComponents();
   }));
 
@@ -16,16 +22,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'ElectronicsServicingModuleFrontend'`, () => {
+  it(`should have as title 'Equipment Service Point'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('ElectronicsServicingModuleFrontend');
+    expect(app.title).toEqual('Equipment Service Point');
   });
 
-  it('should render title in a h1 tag', () => {
+  it('should render title in a h2 tag', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to ElectronicsServicingModuleFrontend!');
+    expect(compiled.querySelector('h2').textContent).toContain('Equipment Service Point');
   });
 });

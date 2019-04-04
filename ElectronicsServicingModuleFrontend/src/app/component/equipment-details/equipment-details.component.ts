@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {EquipmentService} from '../../service/equipment/equipment.service';
 import {Equipment} from '../../model/Equipment';
 import {ActivatedRoute} from '@angular/router';
@@ -12,7 +12,6 @@ import {CommentService} from '../../service/comment/comment.service';
 import {IssueComponent} from '../issue/issue.component';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {isNullOrUndefined} from 'util';
-import {tryCatch} from 'rxjs/internal-compatibility';
 
 @Component({
   selector: 'app-equipment-details',
@@ -136,7 +135,7 @@ export class EquipmentDetailsComponent implements OnInit {
   }
 
   editIssue(issueIndex: number) {
-    const openedComponent = this.modalService.open(IssueComponent, {ariaLabelledBy: 'modal-basic-title', size: 'lg' });
+    const openedComponent = this.modalService.open(IssueComponent, {ariaLabelledBy: 'modal-basic-title', size: 'lg'});
     openedComponent.componentInstance.init(this.selectedEquipment, issueIndex);
   }
 

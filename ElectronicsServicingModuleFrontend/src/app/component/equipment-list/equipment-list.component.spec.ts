@@ -1,6 +1,10 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {EquipmentListComponent} from './equipment-list.component';
+import {RouterTestingModule} from '@angular/router/testing';
+import {HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import {FormsModule} from '@angular/forms';
+import {BrowserModule} from '@angular/platform-browser';
 
 describe('EquipmentListComponent', () => {
   let component: EquipmentListComponent;
@@ -8,7 +12,13 @@ describe('EquipmentListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [EquipmentListComponent]
+      declarations: [EquipmentListComponent],
+      imports: [
+        RouterTestingModule,
+        HttpClientTestingModule,
+        BrowserModule,
+        FormsModule
+      ]
     })
       .compileComponents();
   }));
