@@ -26,7 +26,7 @@ export class EquipmentListComponent implements OnInit {
   }
 
   hasPendingIssues(equipment: Equipment) {
-    return equipment.issues.find(issue => issue.status === Issue.PENDING) != null;
+    return equipment.issues.find(issue => issue.status === Issue.PENDING) !== undefined;
   }
 
 }

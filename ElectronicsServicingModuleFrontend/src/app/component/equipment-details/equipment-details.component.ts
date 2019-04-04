@@ -11,6 +11,8 @@ import {IssueService} from '../../service/issue/issue.service';
 import {CommentService} from '../../service/comment/comment.service';
 import {IssueComponent} from '../issue/issue.component';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {isNullOrUndefined} from 'util';
+import {tryCatch} from 'rxjs/internal-compatibility';
 
 @Component({
   selector: 'app-equipment-details',
@@ -23,6 +25,7 @@ export class EquipmentDetailsComponent implements OnInit {
   categories: string[];
   newComment: Comment;
   issueColumns: string[];
+  errors: string[];
 
   constructor(
     private route: ActivatedRoute,
@@ -36,6 +39,7 @@ export class EquipmentDetailsComponent implements OnInit {
     this.fetchCategories();
     this.fetchEquipment();
     this.issueColumns = ['title', 'status', 'creation date'];
+    this.errors = [];
   }
 
   ngOnInit() {
@@ -62,11 +66,32 @@ export class EquipmentDetailsComponent implements OnInit {
   }
 
   save(): void {
-    this.equipmentService.save(this.selectedEquipment).subscribe(() => this.goBack());
+    if (this.validateFields()) {
+      this.equipmentService.save(this.selectedEquipment)
+        .subscribe(() => this.goBack(), error => this.errors = ['Failed to save data on server']);
+    }
+  }
+
+  private validateFields(): boolean {
+    this.errors = [];
+    if (this.isEmpty(this.selectedEquipment.name)) {
+      this.errors.push('Name cannot be empty');
+    }
+    if (this.isEmpty(this.selectedEquipment.category)) {
+      this.errors.push('Category cannot be empty');
+    }
+    if (this.selectedEquipment.parameters.find(param => this.isEmpty(param.name) || this.isEmpty(param.value)) !== undefined) {
+      this.errors.push('Parameter cannot be empty');
+    }
+    return this.errors.length === 0;
+  }
+
+  private isEmpty(s: string): boolean {
+    return isNullOrUndefined(s) || s.length === 0;
   }
 
   addParameter() {
-    if (this.selectedEquipment.parameters === null) {
+    if (isNullOrUndefined(this.selectedEquipment.parameters)) {
       this.selectedEquipment.parameters = [];
     }
     this.selectedEquipment.parameters.push(new Parameter());
@@ -99,7 +124,8 @@ export class EquipmentDetailsComponent implements OnInit {
       this.selectedEquipment.comments.push(this.newComment);
       const comment = this.newComment;
       if (this.selectedEquipment.id > 0) {
-        this.commentService.addComment(comment, this.selectedEquipment.id).subscribe(result => comment.id = result.id);
+        this.commentService.addComment(comment, this.selectedEquipment.id)
+          .subscribe(result => comment.id = result.id, error => this.errors = ['Failed to save data on server']);
       }
       this.newComment = null;
     }

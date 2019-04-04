@@ -1,6 +1,10 @@
 <div *ngIf="selectedEquipment" class="container">
   <h2>Equipment details</h2>
 
+  <div *ngIf="errors.length" class="alert-danger error-bar">
+    <div *ngFor="let error of errors">{{error}}</div>
+  </div>
+
   <div class="form-group">
     <label>Name:
       <input class="form-control" [(ngModel)]="selectedEquipment.name" placeholder="name"/>
@@ -9,7 +13,7 @@
 
   <div class="form-group">
     <label>Category:
-      <select class="form-control" [(ngModel)]="selectedEquipment.category">
+      <select class="form-control button-size" [(ngModel)]="selectedEquipment.category">
         <option *ngFor="let category of categories" value={{category}}>
           {{category}}
         </option>
@@ -78,7 +82,9 @@
   </div>
   <div class="form-group">
     <div *ngIf="newComment">
-      <label><input [(ngModel)]="newComment.comment" placeholder="Write your comment"/></label>
+      <label class="block">
+        <textarea rows="3" class="text-area" [(ngModel)]="newComment.comment" placeholder="Write your comment..."></textarea>
+      </label>
       <button class="button-size" (click)="sendComment()">Send</button>
     </div>
     <button class="button-size" *ngIf="!newComment" (click)="addComment()">Add comment</button>

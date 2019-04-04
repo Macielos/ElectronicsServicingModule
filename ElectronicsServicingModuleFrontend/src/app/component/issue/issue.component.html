@@ -1,21 +1,26 @@
 
 
 <div *ngIf="tmpIssue" class="container bg-light">
+
+  <div *ngIf="errors.length" class="alert-danger error-bar">
+    <div *ngFor="let error of errors">{{error}}</div>
+  </div>
+
   <div class="form-group">
-    <label>Title:
+    <label class="block">Title:
       <input class="form-control" [(ngModel)]="tmpIssue.title" placeholder="title"/>
     </label>
   </div>
 
   <div class="form-group">
-    <label>Description:
-      <input class="form-control" [(ngModel)]="tmpIssue.description" placeholder="description"/>
+    <label class="block">Description:
+      <textarea rows="3" class="form-control block" [(ngModel)]="tmpIssue.description" placeholder="description"></textarea>
     </label>
   </div>
 
   <div class="form-group">
     <label>Status:
-      <select class="form-control" [(ngModel)]="tmpIssue.status">
+      <select class="form-control button-size" [(ngModel)]="tmpIssue.status">
         <option *ngFor="let status of issueStatuses" value={{status}}>
           {{status}}
         </option>

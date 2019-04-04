@@ -1,9 +1,10 @@
 dodawanie eq 			x
 dodawanie issue			x
 save commenta 			x
-obsl bledow, w tym polaczenia	
-walidacja pol przy save		
-cross-origin - check
+obsl bledow, w tym polaczenia	x
+walidacja pol przy save		x
+cross-origin - check		x
 fetch categories		X
-testy
+testy				x
 paging
+

@@ -13,5 +13,30 @@
 }
 
 .button-size {
-  min-width: 200px;
+  min-width: 220px;
+}
+
+.error-bar {
+  padding: 10px;
+  offset: 30px;
+  border-radius: 8px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.comment {
+  background: lightgray;
+  border-radius: 8px;
+  float: left;
+  width: 70%;
+  margin-top: 10px;
+}
+
+.block {
+  display: block;
+}
+
+.text-area {
+  display: block;
+  width: 70%;
 }
