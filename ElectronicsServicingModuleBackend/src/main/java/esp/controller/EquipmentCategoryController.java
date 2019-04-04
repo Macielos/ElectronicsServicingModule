@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-import static esp.config.WebSecurityConfig.BACKEND_URL;
+import static esp.config.WebSecurityConfig.FRONTEND_URL;
 
-@CrossOrigin(origins = BACKEND_URL)
+@CrossOrigin(origins = FRONTEND_URL)
 @RestController
 @RequestMapping("/category")
 public class EquipmentCategoryController {

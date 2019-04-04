@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import static esp.config.WebSecurityConfig.BACKEND_URL;
+import static esp.config.WebSecurityConfig.FRONTEND_URL;
 
-@CrossOrigin(origins = BACKEND_URL)
+@CrossOrigin(origins = FRONTEND_URL)
 @RestController
 @RequestMapping("/issue")
 public class IssueController {

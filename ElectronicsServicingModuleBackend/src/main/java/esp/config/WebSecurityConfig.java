@@ -1,5 +1,6 @@
 package esp.config;
 
+import lombok.var;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -11,24 +12,29 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-	public static final String BACKEND_URL = "http://localhost:4200";
+	public static final String FRONTEND_URL = "http://localhost:4200";
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()//.anyRequest().permitAll();
 				.antMatchers("/equipment", "/issue", "/comment").hasRole("USER")
-				.anyRequest().authenticated()
-				.and()
-				.httpBasic()
-				.and()
-				.csrf().disable()
-				.cors().and()
-				.formLogin().permitAll();
+				.anyRequest().authenticated().and()
+				.httpBasic().and()
+				.csrf().disable()  //csrfTokenRepository(getCsrfTokenRepository()); //FIXME doesn't work, although I check in browser that angular sets the token
+				.cors();
+
+	}
+
+	private CookieCsrfTokenRepository getCsrfTokenRepository() {
+		var repository = CookieCsrfTokenRepository.withHttpOnlyFalse();
+		repository.setCookiePath("/");
+		return repository;
 	}
 
 	@Bean

@@ -38,7 +38,7 @@ public class JpaConfig {
 		dataSource.setDriverClassName("org.postgresql.Driver");
 		dataSource.setUrl("jdbc:postgresql://localhost:5432/ElectronicsServicePoint");
 		dataSource.setUsername("postgres");
-		dataSource.setPassword("dupa");
+		dataSource.setPassword("pass");
 		return dataSource;
 	}
 

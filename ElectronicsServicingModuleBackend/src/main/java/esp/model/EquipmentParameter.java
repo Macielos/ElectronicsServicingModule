@@ -28,6 +28,7 @@ public class EquipmentParameter {
 	@NotNull
 	private String name;
 
+	//excluded so that lombok's toString doesn't fall into infinite recursion
 	@ToString.Exclude
 	@ManyToOne
 	@JoinColumn(name = "equipment_id")

@@ -5,6 +5,7 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import {FormsModule} from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
+import {HttpClientModule} from '@angular/common/http';
 
 describe('EquipmentDetailsComponent', () => {
   let component: EquipmentDetailsComponent;
@@ -14,9 +15,10 @@ describe('EquipmentDetailsComponent', () => {
     TestBed.configureTestingModule({
       declarations: [EquipmentDetailsComponent],
       imports: [
+        BrowserModule,
         RouterTestingModule,
         HttpClientTestingModule,
-        BrowserModule,
+        HttpClientModule,
         FormsModule
       ]
     })

@@ -27,6 +27,7 @@ public class Comment {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	//excluded so that lombok's toString doesn't fall into infinite recursion
 	@ToString.Exclude
 	@ManyToOne
 	@JoinColumn(name = "equipment_id")
